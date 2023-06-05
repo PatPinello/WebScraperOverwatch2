@@ -1,0 +1,25 @@
+version: '3' #docker version
+services: #containers services
+  www:
+    build: . #image of php apache
+    volumes:
+      - "./:/var/www/html" #syncing
+    ports:
+      - 80:80
+      - 443:443
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=playerStats
+      - MYSQL_USER=php_docker
+      - MYSQL_PASSWORD=password
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d" #synch sql db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
