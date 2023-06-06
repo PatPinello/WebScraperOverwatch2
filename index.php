@@ -86,7 +86,6 @@
     echo '<!DOCTYPE html>
     <html>
       <head>
-        <script src="C:/Users/patri/Music/WebscraperOverwatch2/WebScraperOverwatch2/index.js"></script>
 
       </head>
       <body>
@@ -96,6 +95,7 @@
         <h2>Demo JavaScript in Body</h2>
 
         <p id="demo">A Paragraph</p>
+        <script src="./index.js"></script>
 
         <button type="button" onclick="myFunction()">Try it</button>
 
