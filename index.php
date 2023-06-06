@@ -34,7 +34,7 @@
             $datePresent = "SELECT * FROM $table_name WHERE day = $currentDate AND username =$username";
             $checkDate = mysqli_query($connect,$datePresent);
             $checkDateRows = mysqli_num_rows($checkDate);
-            echo $checkDateRows;
+
             if($checkDateRows > 0) #user with date already exists
             {
                 #already have values - do nothing
@@ -53,7 +53,7 @@
             return "Data added Successfully";
     }
 
-    function readData(string $table_name, string $userID)
+    function readData(string $table_name, string $userID, string $attribute)
     {
         $connect = mysqli_connect(
             'db',
@@ -61,20 +61,28 @@
             'password',
             'playerStats' #db name
         );
-        $attribute = 'Eliminations_MostinGame';
-        $query = "SELECT $attribute FROM $table_name WHERE username = $userID";
-        $result = mysqli_query($connect,$query);
-        while ($row = mysqli_fetch_array($result)){
-            print_r($row);
-        }
 
+        $query = "SELECT $attribute FROM `$table_name` WHERE username = '$userID';";
+        $playerDataArray = array();
+        $result = mysqli_query($connect,$query);
+        if($result)
+        {
+            while ($row = $result->fetch_assoc())
+            {
+                foreach($row as $value) array_push($playerDataArray, $value);
+            }
+        }
+        return $playerDataArray;
     }
 
-
+    $userID = "Ninjaman7000-1418";
+    $attribute = 'Eliminations_MostinGame';
     $table_name = "bestOverall";
     $filename = "bestOverall.json";
     addData($table_name, $filename, "Ninjaman7000-1418");
+    $playerDataArray = readData($table_name, "Ninjaman7000-1418", $attribute);
 
+    file_put_contents($userID . '_' . $attribute . '.json', json_encode($playerDataArray));
 
 
 ?>

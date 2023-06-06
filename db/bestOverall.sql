@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: Jun 05, 2023 at 02:18 PM
+-- Generation Time: Jun 05, 2023 at 09:01 PM
 -- Server version: 8.0.33
 -- PHP Version: 8.1.17
 
@@ -48,7 +48,8 @@ CREATE TABLE `bestOverall` (
   `Assists_MostinGame` float DEFAULT NULL,
   `ObjectiveContestTime_MostinGame` float DEFAULT NULL,
   `ReconAssists_MostinGame` float DEFAULT NULL,
-  `day` date NOT NULL
+  `day` date NOT NULL,
+  `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
