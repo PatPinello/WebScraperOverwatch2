@@ -9,6 +9,8 @@ import numpy as np
 from pprint import pprint
 import sys
 
+print("ok")
+
 
 def playerDict(url):
     page = requests.get(url)
@@ -85,7 +87,6 @@ print(bestOverall)
 
 with open("bestOverall.json", "w") as outfile:
     json.dump(bestOverall_dict, outfile)
-
 
 
 

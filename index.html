@@ -1,22 +1,135 @@
 <!DOCTYPE html>
     <html>
       <head>
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
+        <style>
+          #player {
+              border-radius: 20%;
+              border-color: aquamarine;
+              box-sizing: border-box;
+          }
 
+          .buttonClass {
+              border-radius: 20%;
+              border-color: aqua;
+              border-style: inherit;
+          }
+
+          button:hover {
+              background-color: green;
+          }
+      </style>
       </head>
       <body>
+
+
+        <!-- <py-script> print("Hello, World!") </py-script> -->
+
+        <div id="getPlayerIds">
+          <ul id="playerList"></ul>
+
+          <input type="text" id="playerName"/>
+          <button onclick="addPlayer()" class="buttonClass">Add Player</button>
+          <button onclick="removePlayer()" class="buttonClass">Remove Player</button>
+          <button onClick="submitPlayers()" class="buttonClass">Submit Players</button>
+          <script>
+              function addPlayer()
+              {
+                  var list = document.getElementById("playerList");
+                  var player = document.getElementById("playerName");
+                  var li = document.createElement("li");
+                  li.setAttribute('id', player.value);
+                  li.appendChild(document.createTextNode(player.value));
+                  list.appendChild(li);
+              }
+
+              function removePlayer()
+              {
+                var list = document.getElementById("playerList");
+                var player = document.getElementById("playerName");
+                var name = document.getElementById(player.value);
+                list.removeChild(name);
+              }
+
+              function submitPlayers()
+              {
+                var listItems = [];
+                var playerIds = [];
+                listItems = document.getElementById("playerList").getElementsByTagName('li');
+                for(i=0;i<listItems.length;i++)
+                {
+                  playerIds[i] = listItems[i].innerText;
+                }
+
+                bakeCookie("playerIds", playerIds, 14);
+
+              }
+              function bakeCookie(name, value, days)
+              {
+                var expires;
+
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toGMTString();
+                }
+                else {
+                    expires = "";
+                }
+
+                document.cookie = escape(name) + "=" +
+                  escape(value) + expires + "; path=/";
+              }
+          </script>
+        </div>
+
+        <div id="getAttribute">
+          <input type="checkbox" class="check" id="checkbox" value="Eliminations_MostinGame"/> Eliminations - Most in Game
+          <br>
+          <input type="checkbox" class="check" id="checkbox"value="FinalBlows_MostinGame"/>  Final Blows - Most in Game
+          <br>
+          <input type="checkbox" class="check" id="checkbox" value="HeroDamageDone_MostinGame"/> Hero Damage Done - Most in Game
+          <br>
+          <input type="checkbox" class="check" id="checkbox" value="HealingDone_MostinGame"/> Healing Done - Most in Game
+          <button onClick="submitAttribute()" class="buttonClass">Submit Attribute</button>
+          <!-- Only check one box at a time -->
+          <script>
+            $('input.check').on('change', function() {
+              $('input.check').not(this).prop('checked', false);
+            });
+          </script>
+          <script>
+            function submitAttribute()
+            {
+              var checkboxes = document.getElementsByClassName('check');
+              for (var i = 0; i < checkboxes.length; i ++)
+              {
+                if (checkboxes[i].checked)
+                {
+                  bakeCookie("attribute",checkboxes[i].value,14)
+                  alert("Submitted!");
+                  location.reload();
+                }
+              }
+            }
+
+          </script>
+        </div>
+
+
         <div>
           <canvas id="myChart"></canvas>
         </div>
-        <h2>Demo JavaScript in Body</h2>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script defer src="playerChart.js"></script>
+        <h2>Demo JavaScript what in Bodyy</h2>
 
         <p id="demo">A Paragraph</p>
-        <script src="./index.js"></script>
 
         <button type="button" onclick="myFunction()">Try it</button>
 
-        <script type="text/javascript" src="test.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <script src="chart.js"></script>
       </body>
     </html>
