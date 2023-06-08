@@ -9,7 +9,7 @@ import numpy as np
 from pprint import pprint
 import sys
 
-print("ok")
+# print("ok")
 
 
 def playerDict(url):
@@ -33,14 +33,14 @@ def playerDict(url):
 
     #All Heroes Best
     for i in range(19):
-        best_names.append(all_names[i].get_text().replace(" ","").replace("-","_").strip())
+        best_names.append(all_names[i].get_text().replace(" ","").replace("-","_").replace("s","").replace("S","").strip())
         best_values.append(float(all_values[i].get_text().replace(":","").replace("%","")))
 
     #take down by 1000
-    for y in range(len(best_values)):
-        if(best_values[y] > 1000):
-            val = best_values[y]/1000
-            best_values[y] = val
+    # for y in range(len(best_values)):
+    #     if(best_values[y] > 1000):
+    #         val = best_values[y]/1000
+    #         best_values[y] = val
 
 
 
@@ -63,13 +63,18 @@ bestOverall_dict[username_ben_sql.replace("'","")] = dict_ben
 
 url_ty = 'https://overwatch.blizzard.com/en-us/career/DirtSoup-1478/'
 dict_ty = playerDict(url_ty)
-dict_ty['username'] = url_ty.replace('https://overwatch.blizzard.com/en-us/career/','').replace('/','')
+username_ty_sql = "'"+url_ty.replace('https://overwatch.blizzard.com/en-us/career/','').replace('/','')+"'"
+dict_ty['username'] = username_ty_sql
+bestOverall_dict[username_ty_sql.replace("'","")] = dict_ty
 
 # bestOverall.append(dict_ty)
 
 url_jess = 'https://overwatch.blizzard.com/en-us/career/Deigs-11887/'
 dict_jess = playerDict(url_jess)
-dict_jess['username'] = url_jess.replace('https://overwatch.blizzard.com/en-us/career/','').replace('/','')
+username_jess_sql = "'"+url_jess.replace('https://overwatch.blizzard.com/en-us/career/','').replace('/','')+"'"
+dict_jess['username'] = username_jess_sql
+bestOverall_dict[username_jess_sql.replace("'","")] = dict_jess
+
 
 # bestOverall.append(dict_jess)
 
@@ -79,11 +84,12 @@ dict_jess['username'] = url_jess.replace('https://overwatch.blizzard.com/en-us/c
 
 url_pat = 'https://overwatch.blizzard.com/en-us/career/ComradeJuice-1182/'
 dict_pat = playerDict(url_pat)
-dict_pat['username'] = "'"+url_pat.replace('https://overwatch.blizzard.com/en-us/career/','').replace('/','')+"'"
-
+username_pat_sql = "'"+url_pat.replace('https://overwatch.blizzard.com/en-us/career/','').replace('/','')+"'"
+dict_pat['username'] = username_pat_sql
+bestOverall_dict[username_pat_sql.replace("'","")] = dict_pat
 # bestOverall.append(dict_pat)
 
-print(bestOverall)
+# print(bestOverall)
 
 with open("bestOverall.json", "w") as outfile:
     json.dump(bestOverall_dict, outfile)
