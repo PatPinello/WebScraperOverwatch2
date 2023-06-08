@@ -98,11 +98,17 @@
     // file_put_contents($userID . '_' . $attribute . '.json', json_encode($playerDataArray));
 ?>
 
-<script type="text/javascript">var player1 = "<?= $player1_data ?>";</script>
-<script type="text/javascript">var player2 = "<?= $player2_data ?>";</script>
-<script type="text/javascript">var player3 = "<?= $player3_data ?>";</script>
-<script type="text/javascript">var player4 = "<?= $player4_data ?>";</script>
-<script type="text/javascript">var player5 = "<?= $player5_data ?>";</script>
+<script type="text/javascript">var player1_data = "<?= $player1_data ?>";</script>
+<script type="text/javascript">var player2_data = "<?= $player2_data ?>";</script>
+<script type="text/javascript">var player3_data = "<?= $player3_data ?>";</script>
+<script type="text/javascript">var player4_data = "<?= $player4_data ?>";</script>
+<script type="text/javascript">var player5_data = "<?= $player5_data ?>";</script>
+<script type="text/javascript">var player1_name = "<?= $playerIds[0] ?>";</script>
+<script type="text/javascript">var player2_name = "<?= $playerIds[1] ?>";</script>
+<script type="text/javascript">var player3_name = "<?= $playerIds[2] ?>";</script>
+<script type="text/javascript">var player4_name = "<?= $playerIds[3] ?>";</script>
+<script type="text/javascript">var player5_name = "<?= $playerIds[4] ?>";</script>
+<script type="text/javascript">var attribute = "<?= $_COOKIE["attribute"] ?>";</script>
 <script type="text/javascript">var display = "<?= 1 ?>";</script>
 
 <!-- <script type="text/javascript">var jArray =<?php echo json_encode($playerDataArray); ?>;</script> -->
