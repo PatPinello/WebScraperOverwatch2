@@ -8,13 +8,7 @@
 .header2{
     color: rgb(75, 192, 192);
 }
-.dropdown-toggle::after{
-    content:none;
-}
-/* prevent sticky click */
-.dropdown>.dropdown-toggle:active {
-      pointer-events: none;
-}
+
 .dropdown-item {
     padding-top: 10px;
 
