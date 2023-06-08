@@ -78,17 +78,14 @@
 
     $playerIds =  explode (",", $_COOKIE['playerIds']);
     $playerIdsSize = count($playerIds);
+    $playerNameArray = array_fill(0,5,'None');
+
     for($i=0; $i < $playerIdsSize;$i++)
     {
-        if($playerIds[$i]==null)
-        {
-            $playerIds =  array_slice($playerIds,-(($playerIdsSize-1)-$i));
-            break;
-        }
+        $playerNameArray[$i] = $playerIds[$i];
     }
     foreach($playerIds as $players)
     {
-        echo $players;
         if($players != null)
         {
             addData($table_name, $filename, $players);
@@ -111,7 +108,6 @@
     $player3_data = $playerDataArray[2][0];
     $player4_data = $playerDataArray[3][0];
     $player5_data = $playerDataArray[4][0];
-
     // file_put_contents($userID . '_' . $attribute . '.json', json_encode($playerDataArray));
 ?>
 
@@ -120,11 +116,11 @@
 <script type="text/javascript">var player3_data = "<?= $player3_data ?>";</script>
 <script type="text/javascript">var player4_data = "<?= $player4_data ?>";</script>
 <script type="text/javascript">var player5_data = "<?= $player5_data ?>";</script>
-<script type="text/javascript">var player1_name = "<?= $playerIds[0] ?>";</script>
-<script type="text/javascript">var player2_name = "<?= $playerIds[1] ?>";</script>
-<script type="text/javascript">var player3_name = "<?= $playerIds[2] ?>";</script>
-<script type="text/javascript">var player4_name = "<?= $playerIds[3] ?>";</script>
-<script type="text/javascript">var player5_name = "<?= $playerIds[4] ?>";</script>
+<script type="text/javascript">var player1_name = "<?= $playerNameArray[0] ?>";</script>
+<script type="text/javascript">var player2_name = "<?= $playerNameArray[1] ?>";</script>
+<script type="text/javascript">var player3_name = "<?= $playerNameArray[2] ?>";</script>
+<script type="text/javascript">var player4_name = "<?= $playerNameArray[3] ?>";</script>
+<script type="text/javascript">var player5_name = "<?= $playerNameArray[4] ?>";</script>
 <script type="text/javascript">var attribute = "<?= $_COOKIE["attribute"] ?>";</script>
 <script type="text/javascript">var display = "<?= 1 ?>";</script>
 

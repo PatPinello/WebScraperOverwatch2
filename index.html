@@ -1,162 +1,271 @@
 <!DOCTYPE html>
     <html>
       <head>
-        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
+        <link rel="stylesheet" href="style.css">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
         <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
-        <style>
-          #player {
-              border-radius: 20%;
-              border-color: aquamarine;
-              box-sizing: border-box;
-          }
 
-          .buttonClass {
-              border-radius: 20%;
-              border-color: aqua;
-              border-style: inherit;
-          }
-
-          button:hover {
-              background-color: green;
-          }
-      </style>
       </head>
-      <body>
+      <body class="back">
 
+          <!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- container -->
+    <div class="container-fluid row navbar-container">
+      <!-- row -->
+      <div class="row align-items-center navbar-row">
+        <!-- col -->
+        <div class="col-auto hamburger-col">
+              <!-- hamburger button -->
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#conditional-dropDown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-content">
+                <ul class="navbar-nav  me-auto mb-2 mb-lg-0 ">
+                  <!-- Our Work dropdown -->
+                  <li class="navItem dropdown">
+                    <a class="navLink btn border border-left-0 border-top-0 border-bottom-0" href="#" role="button">
+                      Home
+                    </a>
+                  </li>
+                  <!-- Local Services dropdown -->
+                  <li class="navItem about">
+                    <a class="navLink btn border border-left-0 border-top-0 border-bottom-0" href="#" role="button">
+                        About
+                    </a>
 
-        <!-- <py-script> print("Hello, World!") </py-script> -->
+                </ul>
+              </div>
 
-        <div id="getPlayerIds">
-          <ul id="playerList"></ul>
-
-          <input type="text" id="playerName"/>
-          <button onclick="addPlayer()" class="buttonClass">Add Player</button>
-          <button onclick="removePlayer()" class="buttonClass">Remove Player</button>
-          <button onClick="submitPlayers()" class="buttonClass">Submit Players</button>
-          <script>
-              window.onload = function ()
-              {
-                cookie = getCookie("playerIds");
-                if(cookie != null)
-                {
-                  players = cookie.split('%2C');
-
-
-
-                  var list = document.getElementById("playerList");
-                  for(var i=0;i<players.length;i++)
-                  {
-                    var li = document.createElement("li");
-                    li.setAttribute('id', players[i]);
-                    li.appendChild(document.createTextNode(players[i]));
-                    list.appendChild(li);
-                  }
-
-
-                }
-                else
-                {
-                  return
-                }
-              }
-              function getCookie(name)
-              {
-                const value = `; ${document.cookie}`;
-                const parts = value.split(`; ${name}=`);
-                if (parts.length === 2) return parts.pop().split(';').shift();
-              }
-
-              function addPlayer()
-              {
-                  var list = document.getElementById("playerList");
-                  var player = document.getElementById("playerName");
-                  var li = document.createElement("li");
-                  li.setAttribute('id', player.value);
-                  li.appendChild(document.createTextNode(player.value));
-                  list.appendChild(li);
-              }
-
-              function removePlayer()
-              {
-                var list = document.getElementById("playerList");
-                var player = document.getElementById("playerName");
-                var name = document.getElementById(player.value);
-                list.removeChild(name);
-              }
-
-              function submitPlayers()
-              {
-                var listItems = [];
-                var playerIds = [];
-                listItems = document.getElementById("playerList").getElementsByTagName('li');
-                for(i=0;i<listItems.length;i++)
-                {
-                  playerIds[i] = listItems[i].innerText;
-                }
-
-                bakeCookie("playerIds", playerIds, 14);
-
-              }
-              function bakeCookie(name, value, days)
-              {
-                var expires;
-
-                if (days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                    expires = "; expires=" + date.toGMTString();
-                }
-                else {
-                    expires = "";
-                }
-
-                document.cookie = escape(name) + "=" +
-                  escape(value) + expires + "; path=/";
-              }
-          </script>
+        </div> <!-- end first col -->
+        <div class="col-auto logo-col">
+          <!-- logo -->
+          <div class="logo d-inline conditional-flex">
+            <a href="index.html">
+              <img src="./assests/logo.png">
+            </a>
+          </div>
+          <!-- end logo -->
         </div>
 
-        <div id="getAttribute">
-          <input type="checkbox" class="check" id="checkbox" value="Elimination_MotinGame"/> Eliminations - Most in Game
-          <br>
-          <input type="checkbox" class="check" id="checkbox"value="FinalBlow_MotinGame"/>  Final Blows - Most in Game
-          <br>
-          <input type="checkbox" class="check" id="checkbox" value="HeroDamageDone_MotinGame"/> Hero Damage Done - Most in Game
-          <br>
-          <input type="checkbox" class="check" id="checkbox" value="HealingDone_MotinGame"/> Healing Done - Most in Game
-          <button onClick="submitAttribute()" class="buttonClass">Submit Attribute</button>
-          <!-- Only check one box at a time -->
-          <script>
-            $('input.check').on('change', function() {
-              $('input.check').not(this).prop('checked', false);
-            });
-          </script>
-          <script>
-            function submitAttribute()
-            {
-              var checkboxes = document.getElementsByClassName('check');
-              for (var i = 0; i < checkboxes.length; i ++)
-              {
-                if (checkboxes[i].checked)
-                {
-                  bakeCookie("attribute",checkboxes[i].value,14)
-                  alert("Submitted!");
-                  var display1 = 1;
-                  location.reload();
-                }
-              }
-            }
+      </div> <!--end row-->
+    </div> <!--end container-->
+  </nav> <!-- end navbar -->
+  <!-- dropdown -->
+  <div class="container-fluid container-dropDown">
+    <div class="conditional-dropDown collapse" id="conditional-dropDown">
+      <div class="col-sm-12 col-xs-12 dropDown-col">
+        <button class="dropDown-btn btn w-100 text-start" type="button"><a class="navLink link-unstyled" role="button" href="index.html">Home</a>
+        </button>
+        <button class="dropDown-btn btn w-100 text-start" type="button"><a class="navLink link-unstyled" role="button" href="index.html">About</a>
+        </button>
+    </div>
+    </div>
+  </div>
+  <!-- end dropdown -->
+        <div class="container py-4">
 
-          </script>
+          <div class="row align-items-md-stretch">
+            <div class="playerList col-md-6">
+              <div class="h-100 p-5 bg-light rounded-3">
+                <h2>Player List</h2>
+                <div id="getPlayerIds">
+                  <ul id="playerList"></ul>
+
+                  <input type="text" id="playerName"/>
+                  <button onclick="addPlayer()" class="btn btn-secondary">Add Player</button>
+                  <button onclick="removePlayer()" class="btn btn-secondary">Remove Player</button>
+                  <script>
+                      window.onload = function ()
+                      {
+                        cookie = getCookie("playerIds");
+                        if(cookie != null)
+                        {
+                          players = cookie.split('%2C');
+
+
+
+                          var list = document.getElementById("playerList");
+                          for(var i=0;i<players.length;i++)
+                          {
+                            var li = document.createElement("li");
+                            li.setAttribute('id', players[i]);
+                            li.appendChild(document.createTextNode(players[i]));
+                            list.appendChild(li);
+                          }
+
+
+                        }
+                        else
+                        {
+                          return
+                        }
+                      }
+                      function getCookie(name)
+                      {
+                        const value = `; ${document.cookie}`;
+                        const parts = value.split(`; ${name}=`);
+                        if (parts.length === 2) return parts.pop().split(';').shift();
+                      }
+
+                      function addPlayer()
+                      {
+                          var list = document.getElementById("playerList");
+                          var player = document.getElementById("playerName");
+                          var li = document.createElement("li");
+                          li.setAttribute('id', player.value);
+                          li.appendChild(document.createTextNode(player.value));
+                          list.appendChild(li);
+                      }
+
+                      function removePlayer()
+                      {
+                        var list = document.getElementById("playerList");
+                        var player = document.getElementById("playerName");
+                        var name = document.getElementById(player.value);
+                        list.removeChild(name);
+                      }
+
+                      function submitPlayers()
+                      {
+                        var listItems = [];
+                        var playerIds = [];
+                        listItems = document.getElementById("playerList").getElementsByTagName('li');
+                        for(i=0;i<listItems.length;i++)
+                        {
+                          playerIds[i] = listItems[i].innerText;
+                        }
+
+                        bakeCookie("playerIds", playerIds, 14);
+
+                      }
+                      function bakeCookie(name, value, days)
+                      {
+                        var expires;
+
+                        if (days) {
+                            var date = new Date();
+                            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                            expires = "; expires=" + date.toGMTString();
+                        }
+                        else {
+                            expires = "";
+                        }
+
+                        document.cookie = escape(name) + "=" +
+                          escape(value) + expires + "; path=/";
+                      }
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="h-100 p-5 text-white bg-dark border rounded-3">
+                <h2>Attribute to View</h2>
+                <div id="getAttribute">
+                  <input type="checkbox" class="check" id="checkbox" value="Elimination_MotinGame"/> Eliminations - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox"value="FinalBlow_MotinGame"/>  Final Blows - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="HeroDamageDone_MotinGame"/> Hero Damage Done - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="HealingDone_MotinGame"/> Healing Done - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="AllDamageDone_MotinGame"/> All Damage Done - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox"value="DefeniveAit_MotinGame"/>  Defensive Assists - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="OffeniveAit_MotinGame"/> Offensive Assists - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="ObjectiveKill_MotinGame"/> Objective Kills - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="ObjectiveTime_MotinGame"/> Objective Time - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox"value="Multikill_Bet"/>  Multi Kills - Best
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="oloKill_MotinGame"/> Solo Kills - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="TimepentonFire_MotinGame"/> Time Spent on Fire - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="MeleeFinalBlow_MotinGame"/> Melee Final Blows - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox"value="FinalBlow_MotinGame"/>  Final Blows - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="EnvironmentalKill_MotinGame"/> Environment Kills - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="Killtreak_Bet"/> Killstream - Best
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="BarrierDamageDone_MotinGame"/> Barrier Damage Done - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox"value="Ait_MotinGame"/>  Assists- Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="ObjectiveContetTime_MotinGame"/> Objective Contest Time - Most in Game
+                  <br>
+                  <input type="checkbox" class="check" id="checkbox" value="HeroDamageDone_Avgper10Min"/> Hero Damage Done - Avg per 10 min
+                  <br><br>
+                  <button onClick="submitAttribute()" class="btn btn-outline-success">Submit and View</button>
+                  <!-- Only check one box at a time -->
+                  <script>
+                    $('input.check').on('change', function() {
+                      $('input.check').not(this).prop('checked', false);
+                    });
+                  </script>
+                  <script>
+                    function submitAttribute()
+                    {
+                      var checkboxes = document.getElementsByClassName('check');
+                      for (var i = 0; i < checkboxes.length; i ++)
+                      {
+                        if (checkboxes[i].checked)
+                        {
+                          bakeCookie("attribute",checkboxes[i].value,14)
+                          submitPlayers();
+                          alert("Submitted!");
+                          var display1 = 1;
+                          location.reload();
+                        }
+                      }
+                    }
+
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+              <h1 class="header display-4 fw-bold">Web Scraper, Database, and Data Visualizer</h1>
+              <h2 class="header2 display-6">for Overwatch 2</h2>
+
+
+              <div>
+                <canvas id="myChart"></canvas>
+              </div>
+              <p class=> Built using PHP, SQL, JavaScript, and Python. <br>Run on an Apache Web Server Image Contained in Docker</p>
+            </div>
+          </div>
+
+
+
+          <footer class="pt-3 mt-4 text-muted border-top">
+            <a href="https://github.com/PatPinello/WebScraperOverwatch2">GitHub for this Project</a>
+          </footer>
         </div>
 
 
-        <div>
-          <canvas id="myChart"></canvas>
-        </div>
+
+
+
+
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script defer src="playerChart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 
       </body>
     </html>
