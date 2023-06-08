@@ -58,8 +58,6 @@ PHP picks up this JSON and checks if the user exists, if the user data with that
 mySQL Database created through PHP using an image of an Apache Web Server:
 ![chart](https://github.com/PatPinello/WebScraperOverwatch2/assets/68654707/7e0304e6-fd07-44b5-b4ec-1f87e9de54dc)
   Example of SQL database entry:
-  
-  
     ![image](https://github.com/PatPinello/WebScraperOverwatch2/assets/68654707/471ca35d-e6c5-4183-b389-0a1f8d22135b)
 
 
