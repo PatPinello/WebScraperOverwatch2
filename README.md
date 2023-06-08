@@ -46,7 +46,7 @@ When these are submitted, the page is reloaded and the chart is displayed.
     ![image](https://github.com/PatPinello/WebScraperOverwatch2/assets/68654707/967a3d59-7225-4488-aea3-deb082a3923b)
 
 The scraper.py script will then take these urls, follow them, and scrape the users data.
-  This is down with BeautifulSoup and reading through the HTML below:
+  This is done with BeautifulSoup and reading through the HTML below:
     ![image](https://github.com/PatPinello/WebScraperOverwatch2/assets/68654707/a5cc37ad-a5c3-4e6d-a6ae-638817539154)
   The data is then formatted for SQL and dumped as a JSON.
 
