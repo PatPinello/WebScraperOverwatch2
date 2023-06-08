@@ -1,6 +1,4 @@
 if (display==1){
-  alert(display);
-  alert(player1_data);
   const ctx = document.getElementById("myChart");
 
   new Chart(ctx, {

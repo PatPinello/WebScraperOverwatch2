@@ -82,7 +82,6 @@
     }
     $count = 0;
     $playerDataArray = [];
-    print_r($playerIds);
     foreach($playerIds as $players)
     {
         $playerDataArray[$count] = readData($table_name, $players, $_COOKIE["attribute"]);
