@@ -75,24 +75,42 @@
     $attribute = 'Elimination_MotinGame';
     $table_name = "bestOverall";
     $filename = "bestOverall.json";
+
     $playerIds =  explode (",", $_COOKIE['playerIds']);
+    $playerIdsSize = count($playerIds);
+    for($i=0; $i < $playerIdsSize;$i++)
+    {
+        if($playerIds[$i]==null)
+        {
+            $playerIds =  array_slice($playerIds,-(($playerIdsSize-1)-$i));
+            break;
+        }
+    }
     foreach($playerIds as $players)
     {
-        addData($table_name, $filename, $players);
+        echo $players;
+        if($players != null)
+        {
+            addData($table_name, $filename, $players);
+        }
     }
     $count = 0;
-    $playerDataArray = [];
+    $playerDataArray = array_fill(0,5,'null');
     foreach($playerIds as $players)
     {
-        $playerDataArray[$count] = readData($table_name, $players, $_COOKIE["attribute"]);
-        $count++;
+        if($players != null)
+        {
+            $playerDataArray[$count] = readData($table_name, $players, $_COOKIE["attribute"]);
+            $count++;
+        }
+
     }
     // print_r($playerDataArray);
     $player1_data = $playerDataArray[0][0];
     $player2_data = $playerDataArray[1][0];
     $player3_data = $playerDataArray[2][0];
     $player4_data = $playerDataArray[3][0];
-    // $player5_data = $playerDataArray[4][0];
+    $player5_data = $playerDataArray[4][0];
 
     // file_put_contents($userID . '_' . $attribute . '.json', json_encode($playerDataArray));
 ?>

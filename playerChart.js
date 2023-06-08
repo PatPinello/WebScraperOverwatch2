@@ -4,10 +4,10 @@ if (display==1){
   new Chart(ctx, {
     type: "bar",
     data: {
-      labels: [player1_name, player2_name, player3_name, player4_name, null],
+      labels: [player1_name, player2_name, player3_name, player4_name, player5_name],
       datasets: [{
         label: attribute,
-        data: [player1_data, player2_data, player3_data, player4_data,2],
+        data: [player1_data, player2_data, player3_data, player4_data, player5_data],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(255, 159, 64, 0.2)",
