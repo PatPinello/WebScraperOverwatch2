@@ -1,25 +1,23 @@
 
     window.onload = function ()
     {
-    cookie = getCookie("playerIds");
-    if(cookie != null)
-    {
-        players = cookie.split('%2C');
-        var list = document.getElementById("playerList");
-        for(var i=0;i<players.length;i++)
+        cookie = getCookie("playerIds");
+        if(cookie != null)
         {
-            var li = document.createElement("li");
-            li.setAttribute('id', players[i]);
-            li.appendChild(document.createTextNode(players[i]));
-            list.appendChild(li);
+            players = cookie.split('%2C');
+            var list = document.getElementById("playerList");
+            for(var i=0;i<players.length;i++)
+            {
+                var li = document.createElement("li");
+                li.setAttribute('id', players[i]);
+                li.appendChild(document.createTextNode(players[i]));
+                list.appendChild(li);
+            }
         }
-
-
-    }
-    else
-    {
-        return
-    }
+        else
+        {
+            return
+        }
     }
     function getCookie(name)
     {
