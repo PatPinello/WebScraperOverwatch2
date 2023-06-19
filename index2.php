@@ -18,6 +18,8 @@
         #adding date
         $currentDate = date('Ymd');
         $userDict['day'] = $currentDate;
+        $saveData = ("INSERT INTO $table_name ( " . implode(', ',array_keys($userDict)) . ") VALUES (" . implode(', ',$userDict) . ")");
+        print_r($saveData);
 
         #search if present
         $username = $userDict['username'];
@@ -38,6 +40,7 @@
             else #date for user hasnt been logged - create new row
             {
                 $saveData = ("INSERT INTO $table_name ( " . implode(', ',array_keys($userDict)) . ") VALUES (" . implode(', ',$userDict) . ")");
+                print_r($saveData);
                 mysqli_query($connect,$saveData);
             }
         }
