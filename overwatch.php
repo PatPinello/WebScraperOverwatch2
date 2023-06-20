@@ -4,6 +4,7 @@
         #Uses GET to obtain urls
         #Called when submitting players
     ################################################################ 
+    //! TO DO: Make this run automatically every day for all unqiue users in database
     
     function makePlayerDictionary($playerUrl) 
     {
@@ -44,8 +45,6 @@
         }
         $playerDictionary['day'] = date('Ymd');
         $playerDictionary['username'] = "'" . $username . "'";
-        // echo count($playerDictionary);
-        print_r($playerDictionary);
 
         return $playerDictionary;
     }
@@ -53,23 +52,6 @@
     $playerUrl = $_GET['playerUrl'];
     $playerDictionary = makePlayerDictionary($playerUrl); 
 
-    // print_r($playerDictionary);
-    $user = "root";
-    $password = "Ol1v3m@n24";
-    $database = "playerStats";
-    $table_name = "bestOverall1";
-    
-    try 
-    {
-        $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-        print_r("INSERT INTO $table_name ( " . implode(', ',array_keys($playerDictionary)) . ") VALUES (" . implode(', ',$playerDictionary) . ")");
-        $response = $db->query("INSERT INTO $table_name ( " . implode(', ',array_keys($playerDictionary)) . ") VALUES (" . implode(', ',$playerDictionary) . ")");
-        
-        print_r($response);
-      
-    } catch (PDOException $e) 
-    {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
-    }   
+    include('insertPlayerToDB.php');
+    include('readPlayerFromDB.php')
 ?>
