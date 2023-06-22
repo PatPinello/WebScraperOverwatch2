@@ -1,37 +1,75 @@
 <?php
-    $user = "root"; //! TO DO: change user
-    $password = "Ol1v3m@n24";
-    $database = "playerStats";
-    $table_name = "bestOverall1"; //! TO DO: make table_name a checkbox so other tables can be chosen
-    $attribute = $_COOKIE['attribute'];
 
-    //& IF player is comparing against other players, otherwise * will be used
-    try 
-    {
+    function readData($playerDictionary) {
 
-        $userID = $playerDictionary['username'];
-        $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
         
-        //^Get most recent values from DB
-        $sth = $db->prepare("SELECT B.$attribute FROM
-                            (
-                                select username,max(day) day
-                                from bestOverall1 group by username
-                            ) 
-                            A INNER JOIN bestOverall1 B USING (username,day)
-                            WHERE username=$userID;");
-        $sth->execute();
+        $user = "root"; //! TO DO: change user
+        $password = "Ol1v3m@n24";
+        $database = "playerStats";
+        $table_name = "bestOverall1"; //! TO DO: make table_name a checkbox so other tables can be chosen
+        $attribute = $_COOKIE['attribute'];
 
-        $playerData = ($sth->fetchAll(\PDO::FETCH_ASSOC))[0];
-          
+        //& IF player is comparing against other players, otherwise * will be used
+        try 
+        {
 
-    } catch (PDOException $e) 
-    {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
-    }   
+            $userID = $playerDictionary['username'];
+            $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+            
+            //^Get most recent values from DB
+            $sth = $db->prepare("SELECT B.$attribute FROM
+                                (
+                                    select username,max(day) day
+                                    from bestOverall1 group by username
+                                ) 
+                                A INNER JOIN bestOverall1 B USING (username,day)
+                                WHERE username=$userID;");
+            $sth->execute();
 
+            $playerData = ($sth->fetchAll(\PDO::FETCH_ASSOC))[0];
+            
+
+        } catch (PDOException $e) 
+        {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }   
+        return $playerData;
+    }
     //^ desired data is in $playerData[$attribute]
+    $playerIds =  explode (",", $_COOKIE['playerIds']);
+    $playerIdsSize = count($playerIds);
+    $playerNameArray = array_fill(0,5,'None');
+    for($i=0; $i < $playerIdsSize;$i++)
+    {
+        $playerNameArray[$i] = $playerIds[$i];
+    }
+ 
+    // foreach($playerIds as $players)
+    // {
+    //     if($players != null)
+    //     {
+    //         addData($table_name, $filename, $players);
+    //     }
+    // }
+    $count = 0;
+    $playerDataArray = array_fill(0,5,'null');
+    foreach($playerIds as $players)
+    {
+        
+        if($players != null)
+        {
+            
+            $playerDataArray[$count] = readData($playerDictionary);
+            $count++;
+        }
+
+    }
+    $player1_data = $playerDataArray[0][0];
+    $player2_data = $playerDataArray[1][0];
+    $player3_data = $playerDataArray[2][0];
+    $player4_data = $playerDataArray[3][0];
+    $player5_data = $playerDataArray[4][0];
 
 ?>
 <script type="text/javascript">var player1_data = "<?= $playerData[$attribute] ?>";</script>

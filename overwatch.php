@@ -52,7 +52,7 @@
     $playerUrl = $_GET['playerUrl'];
     $playerDictionary = makePlayerDictionary($playerUrl); 
 
-    include('insertPlayerToDB.php');
+    // include('insertPlayerToDB.php');
     include('readPlayerFromDB.php');
     $html = file_get_contents('index.html');
     echo $html;
