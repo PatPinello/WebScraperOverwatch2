@@ -3,7 +3,6 @@
     $password = "Ol1v3m@n24";
     $database = "playerStats";
     $table_name = "bestOverall1"; //! TO DO: make table_name a checkbox so other tables can be chosen
-    
     try 
     {
         //^day and username are unique in SQL table, IGNORE ignores if they are the same

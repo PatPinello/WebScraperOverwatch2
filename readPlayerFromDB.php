@@ -1,6 +1,5 @@
 <?php
-
-    function readData($playerDictionary) {
+    function readData($userID) {
 
         
         $user = "root"; //! TO DO: change user
@@ -13,7 +12,7 @@
         try 
         {
 
-            $userID = $playerDictionary['username'];
+            // $userID = $playerDictionary['username'];
             $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
             
             //^Get most recent values from DB
@@ -44,7 +43,7 @@
     {
         $playerNameArray[$i] = $playerIds[$i];
     }
- 
+    
     // foreach($playerIds as $players)
     // {
     //     if($players != null)
@@ -54,25 +53,29 @@
     // }
     $count = 0;
     $playerDataArray = array_fill(0,5,'null');
-    foreach($playerIds as $players)
+    $attribute = $_COOKIE['attribute'];
+    
+    foreach($playerNameArray as $players)
     {
-        
-        if($players != null)
+        if($players != 'None')
         {
-            
-            $playerDataArray[$count] = readData($playerDictionary);
-            $count++;
+            $playerDataArray[$count] = readData("'" . $players . "'");
         }
-
+        else
+        {
+            $playerDataArray[$count]= array($attribute=>0);
+        }
+        $count++;
+        
     }
-    $player1_data = $playerDataArray[0][0];
-    $player2_data = $playerDataArray[1][0];
-    $player3_data = $playerDataArray[2][0];
-    $player4_data = $playerDataArray[3][0];
-    $player5_data = $playerDataArray[4][0];
-
+    
+    $player1_data = $playerDataArray[0][$attribute];
+    $player2_data = $playerDataArray[1][$attribute];
+    $player3_data = $playerDataArray[2][$attribute];
+    $player4_data = $playerDataArray[3][$attribute];
+    $player5_data = $playerDataArray[4][$attribute];
 ?>
-<script type="text/javascript">var player1_data = "<?= $playerData[$attribute] ?>";</script>
+<script type="text/javascript">var player1_data = "<?= $player1_data ?>";</script>
 <script type="text/javascript">var player2_data = "<?= $player2_data ?>";</script>
 <script type="text/javascript">var player3_data = "<?= $player3_data ?>";</script>
 <script type="text/javascript">var player4_data = "<?= $player4_data ?>";</script>
