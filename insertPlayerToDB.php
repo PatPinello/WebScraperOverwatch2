@@ -2,7 +2,8 @@
     // $user = "root"; //! TO DO: change user
     // $password = "Ol1v3m@n24";
     // $database = "playerStats";
-    require "../configs/config.php";
+    require "./config.php";
+    require "./common.php";
     $table_name = "bestOverall1"; //! TO DO: make table_name a checkbox so other tables can be chosen
     try 
     {
