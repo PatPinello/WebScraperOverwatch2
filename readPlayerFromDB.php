@@ -2,9 +2,10 @@
     function readData($userID) {
 
         
-        $user = "root"; //! TO DO: change user
-        $password = "Ol1v3m@n24";
-        $database = "playerStats";
+        // $user = "root"; //! TO DO: change user
+        // $password = "Ol1v3m@n24";
+        // $database = "playerStats";
+        require "../configs/config.php";
         $table_name = "bestOverall1"; //! TO DO: make table_name a checkbox so other tables can be chosen
         $attribute = $_COOKIE['attribute'];
 
@@ -13,7 +14,7 @@
         {
 
             // $userID = $playerDictionary['username'];
-            $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+            $db = new PDO($dsn, $user, $password);
             
             //^Get most recent values from DB
             $sth = $db->prepare("SELECT B.$attribute FROM
