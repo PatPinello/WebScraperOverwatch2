@@ -8,7 +8,7 @@
     try 
     {
         //^day and username are unique in SQL table, IGNORE ignores if they are the same
-        $db = new PDO($dsn, $user, $password);
+        $db = new PDO($dsn, $username, $password);
         $response = $db->query("INSERT IGNORE INTO $table_name ( " . implode(', ',array_keys($playerDictionary)) . ") VALUES (" . implode(', ',$playerDictionary) . ")");
         
     } catch (PDOException $e) 

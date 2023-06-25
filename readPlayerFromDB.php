@@ -6,7 +6,9 @@
         // $password = "Ol1v3m@n24";
         // $database = "playerStats";
         require "./config.php";
-        
+        echo $username;
+        echo $password;
+        echo $dsn;
         $table_name = "bestOverall1"; //! TO DO: make table_name a checkbox so other tables can be chosen
         $attribute = $_COOKIE['attribute'];
 
@@ -15,7 +17,7 @@
         {
 
             // $userID = $playerDictionary['username'];
-            $db = new PDO($dsn, $user, $password);
+            $db = new PDO($dsn, $username, $password);
             
             //^Get most recent values from DB
             $sth = $db->prepare("SELECT B.$attribute FROM
