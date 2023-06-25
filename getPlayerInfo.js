@@ -27,7 +27,6 @@ function getCookie(name)
 
 function addPlayer()
 {
-    alert("HI");
     var list = document.getElementById("playerList");
     var player = document.getElementById("playerName");
     var playerVal = player.value;
