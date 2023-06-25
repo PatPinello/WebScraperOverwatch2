@@ -213,14 +213,16 @@
                 <h2>Player List</h2>
                 <div id="getPlayerIds">
                   <ul id="playerList"></ul>
+                  <input type="text" placeholder="Enter Player Url" name="playerUrl" id="playerName">
+
+                  <button onclick="addPlayer()" class="btn w-40 btn-secondary">Add Player</button>
+                  <button onclick="removePlayer()" class="btn w-40 btn-secondary">Remove Player</button>
                   <form method="get" name="form" action="overwatch.php">
-                    <input type="text" placeholder="Enter Player Url" name="playerUrl" id="playerName">
-                    <input type="submit" value="Submit" onClick="submitAttribute()">
+                    <button class="btn btn-lg w-100 btn-outline-success" type="submit" value="Submit" onClick="submitAttribute()">Submit!</button>
                   </form>
                   <script type="text/JavaScript"src="getPlayerInfo.js?t=12345"></script>
                   <!-- <input type="text" id="playerName"/> -->
-                  <button onclick="addPlayer()" class="btn btn-secondary">Add Player</button>
-                  <button onclick="removePlayer()" class="btn btn-secondary">Remove Player</button>
+                  
                 </div>
               </div>
             </div>

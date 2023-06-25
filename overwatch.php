@@ -63,4 +63,6 @@
     $time_taken = round($time_taken,5);
     
     echo 'Page generated in '.$time_taken.' seconds.';
+    // header('Location: index.html');
+    // exit;
 ?>
