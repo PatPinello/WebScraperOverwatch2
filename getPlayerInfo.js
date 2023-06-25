@@ -30,12 +30,12 @@ function addPlayer()
     alert("HI");
     var list = document.getElementById("playerList");
     var player = document.getElementById("playerName");
-    var playerVal = player.val;
+    var playerVal = player.value;
     playerVal = playerVal.replace("https://overwatch.blizzard.com/en-us/career/", "");
     playerVal = playerVal.replace("/","");
     var li = document.createElement("li");
     li.setAttribute('id', playerVal);
-    li.appendChild(document.createTextNode(player.value));
+    li.appendChild(document.createTextNode(playerVal));
     list.appendChild(li);
 }
 
@@ -53,13 +53,16 @@ function submitPlayers()
 {
     var listItems = [];
     var playerIds = [];
+    var playerUrls = [];
     listItems = document.getElementById("playerList").getElementsByTagName('li');
     for(i=0;i<listItems.length;i++)
     {
         playerIds[i] = listItems[i].innerText;
+        playerUrls[i] = 'https://overwatch.blizzard.com/en-us/career/' + listItems[i].innerText + '/';
     }
 
     bakeCookie("playerIds", playerIds, 14);
+    bakeCookie("playerUrls", playerUrls, 14);
 
 }
 

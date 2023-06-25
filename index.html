@@ -4,7 +4,8 @@
         <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
         <link rel="stylesheet" href="style.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script defer src="playerChart.js"></script>
+        <script defer src="playerChart.js?t=12345"></script>
+        <script src="listButton.js?t=12345"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -13,7 +14,25 @@
 
       </head>
       <body>
-
+        <script>
+          $(document).ready(function(){
+            $(function(){
+              var toggled = false;
+              $(".showList").click(function() {
+                var href = $(this).attr('href');
+                var btn = $("[href='" + href + "']");
+                var name = $(this).attr("id");
+                if(!toggled)
+                {
+                  toggled = true;
+                  btn.text(name + '\u2191');
+                } else {
+                  toggled = false;
+                  btn.text(name + '\u2193');
+                }
+              });
+            });
+          });</script>
           <!-- navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!-- container -->
@@ -48,7 +67,7 @@
           <!-- logo -->
           <div class="logo d-inline conditional-flex">
             <a href="index.html">
-              <img src="./assests/logo.png">
+              <img src="./assets/logo.png">
             </a>
           </div>
           <!-- end logo -->
@@ -70,68 +89,97 @@
   </div>
   <!-- end dropdown -->
         <div class="container py-4">
-
+          
           <div class="row align-items-md-stretch">
-            <div class="playerList col-md-6">
-              <div class="h-100 p-5 bg-light rounded-3">
-                <h2>Player List</h2>
-                <div id="getPlayerIds">
-                  <ul id="playerList"></ul>
-                  <form method="get" name="form" action="overwatch.php">
-                    <input type="text" placeholder="Enter Player Url" name="playerUrl" id="playerName">
-                  </form>
-                  <script src="getPlayerInfo.js"></script>
-                  <!-- <input type="text" id="playerName"/> -->
-                  <button onclick="addPlayer()" class="btn btn-secondary">Add Player</button>
-                  <button onclick="removePlayer()" class="btn btn-secondary">Remove Player</button>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
+            <div class ="row align-items-start">
+            <div class="col-md-12">
               <div class="h-100 p-5 text-white bg-dark border rounded-3">
                 <h2>Attribute to View</h2>
-                <div id="getAttribute">
-                  <input type="checkbox" class="check" id="checkbox" value="EliminationMotinGame"/> Eliminations - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox"value="FinalBlowMotinGame"/>  Final Blows - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="HeroDamageDoneMotinGame"/> Hero Damage Done - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="HealingDoneMotinGame"/> Healing Done - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="AllDamageDoneMotinGame"/> All Damage Done - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox"value="DefeniveAitMotinGame"/>  Defensive Assists - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="OffeniveAitMotinGame"/> Offensive Assists - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="ObjectiveKillMotinGame"/> Objective Kills - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="ObjectiveTimeMotinGame"/> Objective Time - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox"value="MultikillBet"/>  Multi Kills - Best
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="oloKillMotinGame"/> Solo Kills - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="TimepentonFireMotinGame"/> Time Spent on Fire - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="MeleeFinalBlowMotinGame"/> Melee Final Blows - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox"value="FinalBlowMotinGame"/>  Final Blows - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="EnvironmentalKillMotinGame"/> Environment Kills - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="KilltreakBet"/> Killstream - Best
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="BarrierDamageDoneMotinGame"/> Barrier Damage Done - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox"value="AitMotinGame"/>  Assists- Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="ObjectiveContetTimeMotinGame"/> Objective Contest Time - Most in Game
-                  <br>
-                  <input type="checkbox" class="check" id="checkbox" value="HeroDamageDoneAvgper10Min"/> Hero Damage Done - Avg per 10 min
-                  <br><br>
-                  <button  type="submit" value= "Submit" onClick="submitAttribute()" class="btn btn-outline-success">Submit and View</button>
+                <div class ="row align-items-start">
+                <div class="col-md-4 order-1">
+                <p>
+                  <a class="btn btn-outline-light showList" data-bs-toggle='collapse' href='#collapseList3' role="button" aria-expanded="false" id="Most in Game " aria-controls="collapseList3">Most in Game &darr;</a>
+                  <div class='collapse fullList text-black' id="collapseList3">
+                    <div id="getAttribute">
+                      <input type="checkbox" class="check" id="checkbox" value="EliminationMotinGame"/> Eliminations - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox"value="FinalBlowMotinGame"/>  Final Blows - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="AllDamageDoneMotinGame"/> All Damage Done - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="HealingDoneMotinGame"/> Healing Done - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="DefeniveAitMotinGame"/> Defensive Assists - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox"value="OffeniveAitMotinGame"/>  Offensive Assists - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveKillMotinGame"/> Offensive Kills - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveTimeMotinGame"/> Objective Time - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="MultikillBet"/> Multi Kills- Best<br>
+                      <input type="checkbox" class="check" id="checkbox"value="SoloKillMotinGame"/>  Solo Kills - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="TimeSpentonFireMotinGame"/> Time Spent on Fire - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="MeleeFinalBlowMotinGame"/> Melee Final Blows - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="EnvironmentalKillMotinGame"/> Environmental Kills - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox"value="KillStreakBet"/>  Killstreak - Best<br>
+                      <input type="checkbox" class="check" id="checkbox" value="HeroDamageDoneMotinGame"/> Hero Damage Done - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="BarrierDamageDoneMotinGame"/> Barrier Damage Done - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="AitMotinGame"/> Assists - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox"value="ObjectiveContetTimeMotinGame"/>  Objective Contest Time - Most in Game<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ReconAitMotinGame"/> Recon Assists - Most in Game<br><br>
+                    </div>
+                  </div>
+                </p>
+                </div>
+                <div class="col-md-4 order-2">
+                <p>
+                  <a class="btn btn-outline-light showList" data-bs-toggle='collapse' href='#collapseList2' role="button" aria-expanded="false" id="Avg per 10 min" aria-controls="collapseList2">Avg per 10 min&darr;</a>
+                  <div class='collapse fullList text-black' id="collapseList2">
+                    <div id="getAttribute">
+                      <input type="checkbox" class="check" id="checkbox" value="TimeSpentonFireAvgper10Min"/> Time Spent on Fire - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="HeroDamageDoneAvgper10Min"/> Hero Damage Done - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="DeathAvgper10Min"/> Death - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="EliminationAvgper10Min"/> Elimination - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="AitAvgper10min"/> Assists - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="HealingDoneAvgper10Min"/> Healing Done - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveKillAvgper10Min"/> Objective Kill - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveTimeAvgper10Min"/> Objective Time - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="FinalBlowAvgper10Min"/> Final Blow - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveContetTimeAvgper10Min"/> Objective Contest Time - Avg per 10 min<br>
+                      <input type="checkbox" class="check" id="checkbox" value="SoloKillAvgper10Min"/> Solo Kill - Avg per 10 min<br><br>
+                    </div>
+                  </div>
+                </p>
+                </div>
+                <div class="col-md-4 order-3">
+                <p>
+                  <a class="btn btn-outline-light showList" data-bs-toggle='collapse' href='#collapseList1' role="button" aria-expanded="false" id="All Time" aria-controls="collapseList1">All Time&darr;</a>
+                  <div class='collapse fullList text-black' id="collapseList1">
+                    <div id="getAttribute">
+                      <input type="checkbox" class="check" id="checkbox" value="TimePlayed"/> Time Played<br>
+                      <input type="checkbox" class="check" id="checkbox" value="GamePlayed"/> Games Played<br>
+                      <input type="checkbox" class="check" id="checkbox" value="GameWon"/> Games Won<br>
+                      <input type="checkbox" class="check" id="checkbox" value="GameLot"/> Games Lost<br>
+                      <input type="checkbox" class="check" id="checkbox" value="HeroWin"/> Hero Wins<br>
+                      <input type="checkbox" class="check" id="checkbox" value="EnvironmentalKill"/> Environmental Kills<br>
+                      <input type="checkbox" class="check" id="checkbox" value="TimeSpentonFire"/> Time Spent on Fire<br>
+                      <input type="checkbox" class="check" id="checkbox" value="MeleeFinalBlow"/> Melee Final Blows<br>
+                      <input type="checkbox" class="check" id="checkbox" value="HeroDamageDone"/> Hero Damage Done<br>
+                      <input type="checkbox" class="check" id="checkbox" value="Death"/> Deaths<br>
+                      <input type="checkbox" class="check" id="checkbox" value="Elimination"/> Eliminations<br>
+                      <input type="checkbox" class="check" id="checkbox" value="DamageDone"/> Damage Done<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveKill"/> Objective Kills<br>
+                      <input type="checkbox" class="check" id="checkbox" value="FinalBlow"/> Final Blows<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveTime"/> Objective Time<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ObjectiveContetTime"/> Objective Contest Time<br>
+                      <input type="checkbox" class="check" id="checkbox" value="SoloKill"/> Solo Kills<br>
+                      <input type="checkbox" class="check" id="checkbox" value="Multikill"/> Multi Kills<br>
+                      <input type="checkbox" class="check" id="checkbox" value="ReconAit"/> Recon Assists<br>
+                      <input type="checkbox" class="check" id="checkbox" value="Ait"/> Assists<br>
+                      <input type="checkbox" class="check" id="checkbox" value="HealingDone"/> Healing Done<br>
+                      <input type="checkbox" class="check" id="checkbox" value="DefeniveAit"/> Defensive Assists<br>
+                      <input type="checkbox" class="check" id="checkbox" value="OffeniveAit"/> Offensive Assists<br>
+                      <input type="checkbox" class="check" id="checkbox" value="Card"/> Cards<br><br>
+                    </div>
+                  </div>
+                </p>
+                </div>
+                </div>
+
+                  
                   <!-- Only check one box at a time -->
                   <script>
                     $('input.check').on('change', function() {
@@ -159,7 +207,24 @@
                   </script>
                 </div>
               </div>
+            
+            <div class="playerList col-md-4">
+              <div class="h-100 p-5 bg-light rounded-3">
+                <h2>Player List</h2>
+                <div id="getPlayerIds">
+                  <ul id="playerList"></ul>
+                  <form method="get" name="form" action="overwatch.php">
+                    <input type="text" placeholder="Enter Player Url" name="playerUrl" id="playerName">
+                    <input type="submit" value="Submit" onClick="submitAttribute()">
+                  </form>
+                  <script type="text/JavaScript"src="getPlayerInfo.js?t=12345"></script>
+                  <!-- <input type="text" id="playerName"/> -->
+                  <button onclick="addPlayer()" class="btn btn-secondary">Add Player</button>
+                  <button onclick="removePlayer()" class="btn btn-secondary">Remove Player</button>
+                </div>
+              </div>
             </div>
+            
           </div>
           <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">

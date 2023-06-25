@@ -1,0 +1,307 @@
+ 
+
+/* dropdown hover */
+/* .dropdown:hover>.dropdown-menu{
+    display:block;
+} */
+.header {
+    color: rgb(255, 99, 132);
+}
+.header2{
+    color: rgb(75, 192, 192);
+}
+
+.dropdown-item {
+    padding-top: 10px;
+
+    /* padding-left: 200px; */
+}
+.about a{
+    color: grey !important;
+}
+.navItem a {
+    font-family: "Museo Slab 900","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",sans-serif;
+    font-size: 16px;
+    width: 160px;
+    height:100px;
+    border-right: #54575a;
+    border-radius: 0;
+    font-size:20px;
+    color: #fc641a;
+    vertical-align: middle;
+    outline: none;
+}
+.dropdown-list-item a{
+    color:#54575a;
+    height: 50px;
+    width: 160px;
+    font-size: 16px;
+    outline: none !important;
+}
+
+.navbar-nav {
+    border-right: #54575a;
+    border-radius: 0;
+}
+.dropdown-btn:hover {
+    background-image: linear-gradient(to bottom, #b8b9b9, #b3b3b3);
+    color: black;
+}
+.dropDown-btn-top {
+    background-color: #f8f9fa;
+    background-image: linear-gradient(to bottom, #f8f9fa, #e7e9eb);
+    height: 100px;
+    border-radius: 0%;
+    color:rgba(255, 107, 53, 0.897);
+    border-color: #54575a10;
+    text-shadow: rgba(177, 74, 37, 0.808) .5px .5px 40px;
+}
+.dropDown-btn {
+    background-color: #f4f4f5;
+    height: 100px;
+    border-radius: 0%;
+    color:rgba(255, 107, 53, 0.897);
+    border-color: #54575a10;
+    text-shadow: rgba(177, 74, 37, 0.808) .5px .5px 40px;
+}
+.btn-inner-dropDown a{
+    height: 100px;
+    color:rgb(252, 137, 96);
+    text-shadow: rgba(177, 74, 37, 0.808) .5px .5px 40px;
+    text-align: start;
+    outline: none;
+    text-decoration: none;
+    padding-left: 10px;
+
+
+}
+.btn-inner-dropDown {
+    padding: 0;
+    margin-left: 10px;
+    border-color: #babbbd;
+    background-color: #e3e6e7;
+    border-width: 1px;
+    outline: none;
+    width: 99%;
+    border-radius: 0%;
+    font-size: 18px;
+    text-align: start;
+
+}
+.container-dropDown {
+    background-image: url('./assets/pattern_orange.png');
+
+}
+.container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+/* .navItem.dropdown{
+    position: relative;
+}*/
+/* .navbar-toggler{
+    position: absolute;
+} */
+
+
+
+
+.navbar-collapse {
+
+    width: 100%;
+    top: 100%;
+}
+
+.logo img{
+    height: 100px;
+    width: 100px;
+
+}
+.img-banner{
+    width: 154.2%;
+    height: 80%;
+    margin-left: -400px;
+
+
+}
+.card-img-top{
+    background-color: #54575a10;
+    object-fit: contain;
+}
+.card-body{
+    background-color: #54575a1f;
+    font-family: "Museo Slab 900","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",sans-serif;
+}
+.card-title p a{
+    color:#ff4500;
+    font-family: "Museo Slab 900","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",sans-serif;
+    font-size: large;
+    text-decoration: none;
+}
+.card-text{
+    height: 480px;
+}
+.playerList {
+    height: fit-content;
+}
+#intro {
+    background-image: "C:\Users\patri\Music\WebscraperOverwatch2\WebScraperOverwatch2\assests\background.jpg";
+}
+.btn:hover {
+    color:white;
+    background-color: grey;
+    border-color: grey;
+}
+.updated{
+    padding-left: 10px;
+}
+.donate a:hover{
+    background-color: rgba(255, 107, 53, 0.897);
+    color:white;
+}
+.btn-orange {
+    background-color: #ff440000;
+    color: white;
+    border-color: #ff4400b7;
+
+  }
+  .btn-orange:hover {
+    background-color: #ff4500;
+    color: white;
+    border-color: #ff4500;
+
+  }
+
+.donate a{
+    vertical-align: middle;
+    /* background-color: #ff4500; */
+    background-image: url('./assets/pattern_orange.png');
+    color: #ffffff;
+    float: right;
+
+}
+.btn-donate {
+    padding: 20px 20px !important;
+    font-size: 40px !important;
+    border-radius: 0 !important;
+    line-height: 1.25 !important;
+    text-transform: uppercase !important;
+    font-family: "Museo Slab 900","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",sans-serif !important;
+    height: 90px !important;
+}
+.btn-donate:hover{
+    background-image: url('./assets/pattern_orange.png');
+    opacity: 0.6;
+    color:white;
+
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+@media (min-width: 768px) {
+    .animate {
+        animation-duration: 0.3s;
+        -webkit-animation-duration: 0.3s;
+        animation-fill-mode: both;
+        -webkit-animation-fill-mode: both;
+    }
+    .conditional-flex {
+        display: flex;
+    }
+    .hamburger-col{
+        order: 2;
+    }
+    .logo-col{
+        order: 1;
+    }
+    .donate-col{
+        order: 3;
+    }
+
+
+
+}
+.container-dropDown{
+    display: none;
+
+}
+
+@media (max-width: 991px)
+{
+    .navbar-content {
+        display: none;
+    }
+    .container-dropDown{
+        display: block;
+    }
+    .btn-donate {
+        padding: 30px 10px !important;
+        font-size: 20px !important;
+        border-radius: 10px !important;
+        line-height: 1 !important;
+        text-transform: uppercase !important;
+        font-family: "Museo Slab 900","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",sans-serif !important;
+        height: 80px !important;
+    }
+}
+
+/*Adoption*/
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+
+@keyframes slideIn {
+0% {
+    transform: translateY(1rem);
+    opacity: 0;
+}
+
+100% {
+    transform: translateY(0rem);
+    opacity: 1;
+}
+
+0% {
+    transform: translateY(1rem);
+    opacity: 0;
+}
+}
+@-webkit-keyframes slideIn {
+0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+}
+
+100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+}
+
+0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+}
+}
+.slideIn {
+-webkit-animation-name: slideIn;
+animation-name: slideIn;
+}

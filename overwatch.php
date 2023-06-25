@@ -5,7 +5,6 @@
         #Called when submitting players
     ################################################################ 
     //! TO DO: Make this run automatically every day for all unqiue users in database
-    
     function makePlayerDictionary($playerUrl) 
     {
         $context = stream_context_create(
@@ -48,12 +47,20 @@
 
         return $playerDictionary;
     }
-
-    $playerUrl = $_GET['playerUrl'];
-    $playerDictionary = makePlayerDictionary($playerUrl); 
-
-    include('insertPlayerToDB.php');
+    $start_time = microtime(TRUE);
+    // $playerUrl = $_GET['playerUrl'];
+    $playerUrls = explode(",", $_COOKIE['playerUrls']);
+    foreach ($playerUrls as $url)
+    {
+        $playerDictionary = makePlayerDictionary($url);
+        include('insertPlayerToDB.php');
+    }
     include('readPlayerFromDB.php');
-    // $html = file_get_contents('index.html');
-    // echo $html;
+    $html = file_get_contents('index.html');
+    echo $html;
+    $end_time = microtime(TRUE);
+    $time_taken =($end_time - $start_time);
+    $time_taken = round($time_taken,5);
+    
+    echo 'Page generated in '.$time_taken.' seconds.';
 ?>
